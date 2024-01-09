@@ -47,7 +47,9 @@ class AuthController {
                 $_SESSION['last']=$user->laste_name;
                 $_SESSION['role']=$user->role;
                 $_SESSION['user_id']=$user->userID;
-              include '../app/View/admin/statistique.php';
+             $affichage=new AdminController();
+             $affichage->index();
+
            } else {
             include_once '../app/View/auth/login.php';
            }
