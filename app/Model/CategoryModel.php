@@ -77,6 +77,20 @@ public function delete($id) {
     return $result;
 }
     
+
+public function findFour(){
+    $conn = $this->db->getConnection();
+    $sql = "SELECT * FROM `categories` order by categoryID DESC  limit 4 ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    if($result){
+        return $result;
+    }
+
+   }
+
+
 }
 
 

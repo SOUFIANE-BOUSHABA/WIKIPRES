@@ -53,6 +53,51 @@
     </div>
   </div>
 
+<!-- add -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">ajouter categories</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                <form action="?uri=wiki/create" method="post">
+
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <textarea class="form-control" id="content" name="content" required></textarea>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="categoryID">Category ID:</label>
+                    <input type="number" class="form-control" id="categoryID" name="categoryID">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="urlImage"> Image:</label>
+                    <input type="file" class="form-control" id="urlImage" name="urlImage">
+                </div>
+
+
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" value="addtag" name="submit" class="btn btn-primary">Ajouter</button>
+                </form>   
+
+                  
+                </div>
+              
+            </div>
+        </div>
+    </div>
 
 
 </main>

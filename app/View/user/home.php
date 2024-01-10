@@ -18,113 +18,21 @@
 <section class="category-section">
     <div class="container">
     <h2 class="fw-bold">Latest Category</h2>
-        <div class="row">
+        
+        <div class="row justify-content-between">
+        <?php foreach ($categoreis as $categorei) :  ?>
 
             <!-- Category Card 1 -->
-            <div class="col-md-3 category-card shadow-sm">
+            <div class="col-md-2 category-card shadow-sm">
                 <div class="card ">
                    
                     <div class="card-body">
-                        <h5 class="card-title">Category 1</h5>
-                        <p class="card-text">Description of Category 1.</p>
-                        <a href="#" class="btn btn-dark">Explore</a>
+                        <h5 class="card-title"><?= $categorei->name ?></h5>
                     </div>
                 </div>
             </div>
 
-            <!-- Category Card 2 -->
-            <div class="col-md-3 category-card shadow-sm">
-                <div class="card ">
-                   
-                    <div class="card-body">
-                        <h5 class="card-title">Category 1</h5>
-                        <p class="card-text">Description of Category 1.</p>
-                        <a href="#" class="btn btn-dark">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Category Card 3 -->
-            <div class="col-md-3 category-card shadow-sm">
-                <div class="card ">
-                   
-                    <div class="card-body">
-                        <h5 class="card-title">Category 1</h5>
-                        <p class="card-text">Description of Category 1.</p>
-                        <a href="#" class="btn btn-dark">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Category Card 4 -->
-            <div class="col-md-3 category-card shadow-sm">
-                <div class="card ">
-                   
-                    <div class="card-body">
-                        <h5 class="card-title">Category 1</h5>
-                        <p class="card-text">Description of Category 1.</p>
-                        <a href="#" class="btn btn-dark">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="container">
-        <div class="row">
-
-            <!-- Category Card 1 -->
-            <div class="col-md-3 category-card shadow-sm">
-                <div class="card ">
-                   
-                    <div class="card-body">
-                        <h5 class="card-title">Category 1</h5>
-                        <p class="card-text">Description of Category 1.</p>
-                        <a href="#" class="btn btn-dark">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Card 2 -->
-            <div class="col-md-3 category-card shadow-sm">
-                <div class="card ">
-                   
-                    <div class="card-body">
-                        <h5 class="card-title">Category 1</h5>
-                        <p class="card-text">Description of Category 1.</p>
-                        <a href="#" class="btn btn-dark">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Category Card 3 -->
-            <div class="col-md-3 category-card shadow-sm">
-                <div class="card ">
-                   
-                    <div class="card-body">
-                        <h5 class="card-title">Category 1</h5>
-                        <p class="card-text">Description of Category 1.</p>
-                        <a href="#" class="btn btn-dark">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Category Card 4 -->
-            <div class="col-md-3 category-card shadow-sm">
-                <div class="card ">
-                   
-                    <div class="card-body">
-                        <h5 class="card-title">Category 1</h5>
-                        <p class="card-text">Description of Category 1.</p>
-                        <a href="#" class="btn btn-dark">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
