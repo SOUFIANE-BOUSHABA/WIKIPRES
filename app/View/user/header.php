@@ -155,10 +155,10 @@ input:focus {
             <div class="justify-content-center">
                  <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="?uri=user">Home</a>
+                    <a class="nav-link" href="?uri=category/getCategorieForHome">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?uri=user/getwikis">wikis</a>
+                    <a class="nav-link" href="?uri=wiki/getWikisForUser">wikis</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>

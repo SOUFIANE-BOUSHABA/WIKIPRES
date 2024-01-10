@@ -63,6 +63,11 @@ class CategoryController {
         }
     }
   
+    public function getCategorieForHome(){
+        $category = new CategoryModel();
+        $categoreis=$category->findFour();
+        include_once '../app/View/user/home.php';
+   }
 }
 
 ?>

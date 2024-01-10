@@ -86,7 +86,7 @@
 
                 <form action="?uri=category/create" method="post">
                     <label for="cate">name</label> <br>
-                    <input id="cate" type="text" name="category" placeholder="enter le nome de categories" class="w-75 mb-4"><br>
+                    <input id="cate" type="text" name="category" placeholder="enter le nom de categories" class="w-75 mb-4"><br>
 
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" value="addCategorie"  name="submit" class="btn btn-primary">Ajouter</button>

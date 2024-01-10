@@ -36,7 +36,28 @@ class WikiController {
             }
         }
     }
-  
+    public function getWikisForUser(){
+        $wiki = new WikiModel();
+        $wikis=$wiki->findAll();
+        include_once '../app/View/user/wikis.php';
+   }
+
+
+   
+   public function searchtwo() {
+    if (isset($_GET['search'])) {
+        $searchTerm = $_GET['search'];
+        $wiki = new WikiModel();
+        $searchResults = $wiki->searchByName($searchTerm);
+    if($searchResults){
+        include_once '../app/View/user/includesAjax/wiki.php';
+        exit(); 
+    }
+        
+  }
 }
+   
+}
+
 
 ?>

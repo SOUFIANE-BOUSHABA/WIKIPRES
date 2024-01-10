@@ -24,7 +24,7 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody id="category">
+        <tbody id="tag">
 
         <?php foreach ($tags as $tag) :  ?>
                 <tr>
@@ -86,7 +86,7 @@
 
                 <form action="?uri=tag/create" method="post">
                     <label for="cate">name</label> <br>
-                    <input id="cate" type="text" name="tag" placeholder="enter le nome de tag" class="w-75 mb-4"><br>
+                    <input id="cate" type="text" name="tag" placeholder="enter le nom de tag" class="w-75 mb-4"><br>
 
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" value="addtag"  name="submit" class="btn btn-primary">Ajouter</button>
@@ -173,12 +173,12 @@
         function search() {
                
                let input = document.getElementById("searchInput").value;
-               let url = `?uri=category/search&search=${encodeURIComponent(input)}`;
+               let url = `?uri=tag/search&search=${encodeURIComponent(input)}`;
 
                let xml = new XMLHttpRequest();
                xml.onreadystatechange = function () {
                    if (this.readyState == 4 && this.status == 200) {
-                       document.getElementById("category").innerHTML = xml.responseText;
+                       document.getElementById("tag").innerHTML = xml.responseText;
                    }
                };
                xml.open("GET", url, true);
