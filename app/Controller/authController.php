@@ -47,15 +47,26 @@ class AuthController {
                 $_SESSION['last']=$user->laste_name;
                 $_SESSION['role']=$user->role;
                 $_SESSION['user_id']=$user->userID;
-             $affichage=new AdminController();
-             $affichage->index();
+                if ($user->role == 'admin') {
+                  header('Location:?uri=admin'); 
+                  exit();
+              } elseif ($user->role == 'author') {
+                  header('Location:?uri=wiki/getWikis');
+                  exit();
+              }
 
            } else {
             include_once '../app/View/auth/login.php';
            }
         } 
     }
-
+    public function logoutUser() {
+      $_SESSION = array();
+      session_destroy();
+      header('Location: ?uri=auth'); 
+      exit();
+  }
+  
     
   
 }

@@ -7,7 +7,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?=$wiki->title?></h5>
                         <p class="card-text">Description of Wiki 1.</p>
-                        <a href="#" class="btn btn-dark">Read More</a>
+                        <a href="?uri=wiki/detailwiki/<?=$wiki->wikiID?>" class="btn btn-dark">Read More</a>
                     </div>
                 </div>
             </div>

@@ -23,13 +23,6 @@
   </div>
  </div>
 
- <div id="chartContainer" class="card">
-    <h5 class="card-title">Charts</h5>
-    <div class="card-body">
-    <canvas id="wikiChart" width="700" height="100"></canvas>
-
-    </div>
-  </div>
 </main>
 
     </div>

@@ -42,7 +42,7 @@ class WikiModel{
 
    public function searchByName($searchTerm) {
     $conn = $this->db->getConnection();
-    $sql = "SELECT * FROM `wikis` WHERE `title` LIKE ?";
+    $sql = "SELECT * FROM `wikis` WHERE `title` LIKE ?  and `deletedAt` IS NULL";
     $stmt = $conn->prepare($sql);
     $stmt->execute(["%$searchTerm%"]);
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -79,7 +79,58 @@ public function createWikiTAgs( $tagIDs, $wikiid){
 }
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function  findOne($id){
+    $conn = $this->db->getConnection();
+    $sql = "SELECT * FROM `wikis`  join users on  wikis.userID =  users.userID WHERE wikiID = ?  and `deletedAt` IS NULL";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+    $result = $stmt->fetchObject();
+    return $result ;
+}
+  
+
+
+
+
+
+
+
+
+
+
+public function searchByCategory($categoryId) {
+    $conn = $this->db->getConnection();
+
+    $sql = "SELECT w.* FROM `wikis` w
+            JOIN `categories` wc ON w.`categoryID` = wc.`categoryID`
+            WHERE  wc.`categoryID` = ? AND w.`deletedAt` IS NULL";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$categoryId]);
+
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    if ($result) {
+        return $result;
+    }
+}
+
+
+
+
 }
 
 

@@ -53,7 +53,11 @@
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><hr class="dropdown-divider"></li>
+                        <?php if (!isset($_SESSION['user_id'])) { ?>
                         <li><a class="dropdown-item" href="?uri=auth">login</a></li>
+                        <?php }else{ ?>
+                            <li><a class="dropdown-item" href="?uri=auth/logoutUser">logout</a></li>
+                            <?php } ?>
                     </ul>
                 </li>
             </ul>

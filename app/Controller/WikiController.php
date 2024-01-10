@@ -50,6 +50,13 @@ class WikiController {
     public function getWikisForUser(){
         $wiki = new WikiModel();
         $wikis=$wiki->findAll();
+
+        $category = new CategoryController();
+        $categoreis = $category->getCategoriesFourFilter(); 
+
+        $tag = new TagController();
+        $tags = $tag->getTagsForFilter(); 
+   
         include_once '../app/View/user/wikis.php';
    }
 
@@ -98,6 +105,33 @@ public function create(){
     }
 }
 
+
+
+public function detailwiki($id){
+    $wikiModel = new WikiModel();
+    $wikis= $wikiModel->findOne($id);
+    include_once '../app/View/user/detailwiki.php';
+}
+
+
+
+
+
+
+
+
+public function searchByCategory() {
+    if (isset($_GET['category'])) {
+        $categoryId = $_GET['category'];
+
+        $wiki = new WikiModel();
+        $searchResults = $wiki->searchByCategory($categoryId);
+
+        if ($searchResults) {
+            include_once '../app/View/user/includesAjax/wiki.php';
+        }
+    }
+}
    
 }
 
