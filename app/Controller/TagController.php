@@ -67,6 +67,11 @@ class TagController {
         $tag = new TagModel();
        return $tags=$tag->findAll();
    }
+
+   public function getTagsForFilter(){
+    $tag = new TagModel();
+   return $tags=$tag->findAll();
+}
   
 }
 

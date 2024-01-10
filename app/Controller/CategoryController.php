@@ -74,6 +74,13 @@ class CategoryController {
     $category = new CategoryModel();
     return  $categoreis=$category->findAll();
 }
+
+public function getCategoriesFourFilter(){
+    $category = new CategoryModel();
+    return  $categoreis=$category->findAll();
+}
+
+
 }
 
 ?>

@@ -12,42 +12,33 @@
             <!-- Checklist -->
             <div class="filter-section">
                 <h5>category</h5>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="check1">
-                    <label class="form-check-label" for="check1">
-                        Filter 1
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="check2">
-                    <label class="form-check-label" for="check2">
-                        Filter 2
-                    </label>
-                </div>
-                <!-- Add more filters as needed -->
+                <?php foreach($categoreis as $category) : ?>
+                    <div class="form-check">
+                        <input class="form-check-input category-radio" type="radio" name="category" value="<?=$category->categoryID?>" id="category<?=$category->categoryID?>">
+                        <label class="form-check-label" for="category<?=$category->categoryID?>">
+                            <?=$category->name?>
+                        </label>
+                    </div>
+                <?php endforeach ?>
             </div>
 
             <div class="filter-section">
                 <h5>tags</h5>
+                <?php  foreach($tags as $tag) : ?>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="check1">
                     <label class="form-check-label" for="check1">
-                        Filter 1
+                       <?=$tag->name?>
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="check2">
-                    <label class="form-check-label" for="check2">
-                        Filter 2
-                    </label>
-                </div>
+                <?php endforeach ?>
+               
             </div>
         </div>
         <div class="col-md-9 border">
        
         <div class="row text-start justify-content-evenly" id="wikisforuser">
         <?php foreach ($wikis as $wiki) :  ?>
-            <!-- Wiki Card 1 -->
             <div class="col-md-5 wiki-card shadow-sm "  data-aos="fade-up"
                 data-aos-anchor-placement="bottom-bottom">
                 <div class="card">
@@ -55,7 +46,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?=$wiki->title?></h5>
                         <p class="card-text">Description of Wiki 1.</p>
-                        <a href="" class="btn btn-dark">Read More</a>
+                        <a href="?uri=wiki/detailwiki/<?=$wiki->wikiID?>" class="btn btn-dark">Read More</a>
                     </div>
                 </div>
             </div>
@@ -87,6 +78,24 @@
                xml.send();
          
        }
+
+
+       function searchByCategory() {
+            let categoryRadio = document.querySelector('input[name="category"]:checked');
+            if (categoryRadio) {
+                let category = categoryRadio.value;
+                let url = `?uri=wiki/searchByCategory&category=${category}`;
+
+                let xml = new XMLHttpRequest();
+                xml.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("wikisforuser").innerHTML = xml.responseText;
+                    }
+                };
+                xml.open("GET", url, true);
+                xml.send();
+            }
+        }
 </script>
 
 
