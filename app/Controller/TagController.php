@@ -62,6 +62,11 @@ class TagController {
           
         }
     }
+
+    public function getTagsForFormulaire(){
+        $tag = new TagModel();
+       return $tags=$tag->findAll();
+   }
   
 }
 

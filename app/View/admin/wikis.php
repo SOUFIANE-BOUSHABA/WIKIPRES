@@ -77,9 +77,22 @@
 
 
                 <div class="form-group">
-                    <label for="categoryID">Category ID:</label>
-                    <input type="number" class="form-control" id="categoryID" name="categoryID">
+                    <label for="categoryID">Category:</label>
+                    <select class="form-control" id="categoryID" name="categoryID">
+                        <?php var_dump($categoreis); foreach ($categoreis as $category) : ?>
+                            <option value="<?= $category->categoryID ?>"><?= $category->name ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
+                <div class="form-group">
+                  <label for="tagIDs">Tags:</label>
+                  <?php foreach ($tags as $tag) : ?>
+                      <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="tag<?= $tag->tagID ?>" name="tagIDs[]" value="<?= $tag->tagID ?>">
+                          <label class="form-check-label" for="tag<?= $tag->tagID ?>"><?= $tag->name ?></label>
+                      </div>
+                  <?php endforeach; ?>
+              </div>
 
                 <div class="form-group mb-3">
                     <label for="urlImage"> Image:</label>

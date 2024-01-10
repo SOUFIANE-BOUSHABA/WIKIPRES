@@ -68,6 +68,12 @@ class CategoryController {
         $categoreis=$category->findFour();
         include_once '../app/View/user/home.php';
    }
+
+
+   public function getCategoriesFourFormulaire(){
+    $category = new CategoryModel();
+    return  $categoreis=$category->findAll();
+}
 }
 
 ?>
