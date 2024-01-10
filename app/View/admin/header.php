@@ -59,9 +59,11 @@
               <?php echo   $_SESSION['first']." ".$_SESSION['last'] ?>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+              <?php if ($_SESSION['role'] === 'author') { ?>
+                <li><a class="dropdown-item" href="?uri=user">visiter le site web</a></li>
+              <?php } ?>  
                 <li><a class="dropdown-item" href="?uri=auth/logoutUser">logout</a></li>
+
             </ul>
             </div>
 

@@ -8,8 +8,8 @@
                 <p>Your text description goes here.</p>
                 <button class="btn btn-dark">Learn More</button>
             </div>
-            <div class="col-md-6">
-                <img src="les-gens-minuscules-lisant-des-livres-de-la-liste-de-la-litterature-de-qualite-2r5fgnb-removebg-preview.png" alt="Hero Image" class="hero-image">
+            <div class="col-md-6 mt-4 ">
+                <img src="./upload/les-gens-minuscules-lisant-des-livres-de-la-liste-de-la-litterature-de-qualite-2r5fgnb-removebg-preview.png" alt="Hero Image" class="hero-image">
             </div>
         </div>
     </div>
