@@ -6,10 +6,21 @@ use App\Model\WikiModel;
 class WikiController {
 
     public function getWikis(){
-         $wiki = new WikiModel();
-         $wikis=$wiki->findAll();
-         include_once '../app/View/admin/wikis.php';
-    }
+
+     
+
+        $wiki = new WikiModel();
+        $wikis = $wiki->findAll();
+   
+      
+        $category = new CategoryController();
+        $categoreis = $category->getCategoriesFourFormulaire(); 
+        
+        $tag = new TagController();
+        $tags = $tag->getTagsForFormulaire(); 
+   
+        include_once '../app/View/admin/wikis.php';
+   }
 
     public function search() {
         if (isset($_GET['search'])) {
