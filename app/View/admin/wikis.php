@@ -17,7 +17,7 @@
         <table class="table align-middle pl-4 mb-0 mt-2 bg-white ">
             <thead class="bg-light">
           <tr>
-            <th>ID</th>
+            <th>Image</th>
             <th>Name</th>
             <th>created_at</th>
             <th>updated_at</th>
@@ -28,7 +28,7 @@
 
         <?php foreach ($wikis as $wiki) :  ?>
                 <tr>
-                    <td><?= $wiki->wikiID  ?></td>
+                    <td><img src="<?= $wiki->urlImage  ?>" alt="ok"></td>
                     <td><?= $wiki->title ?></td>
                     <td><?= $wiki->created_at ?></td>
                     <td><?= $wiki->updated_at ?></td>
@@ -58,12 +58,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">ajouter categories</h5>
+                    <h5 class="modal-title" id="addModalLabel">ajouter wiki</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
-                <form action="?uri=wiki/create" method="post">
+                <form action="?uri=wiki/create" method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="title">Title:</label>
@@ -79,7 +79,7 @@
                 <div class="form-group">
                     <label for="categoryID">Category:</label>
                     <select class="form-control" id="categoryID" name="categoryID">
-                        <?php var_dump($categoreis); foreach ($categoreis as $category) : ?>
+                        <?php  foreach ($categoreis as $category) : ?>
                             <option value="<?= $category->categoryID ?>"><?= $category->name ?></option>
                         <?php endforeach; ?>
                     </select>
@@ -102,7 +102,7 @@
 
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" value="addtag" name="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" value="addwiki" name="submit" class="btn btn-primary">Ajouter</button>
                 </form>   
 
                   

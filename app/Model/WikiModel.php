@@ -10,6 +10,13 @@ use App\Database\Database;
 class WikiModel{
     private $db;
     private $name;
+    private $urlImg;
+    private $title;
+    private $content;
+    private $author;
+
+    private $categoryId;
+    private $tagsId;
 
     public function __construct() {
         $this->db = new Database();
@@ -51,6 +58,27 @@ public function archiver($id) {
     $result = $stmt->execute([$id]);
     return $result;
 }
+
+public function createWiki($title, $content, $categoryID, $imageFile, $userID){
+    $conn = $this->db->getConnection();
+    $sql = "INSERT INTO `wikis` (`title`, `content`, `categoryID`, `urlImage`, `userID`, `created_at`, `updated_at`)
+    VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+     $stmt = $conn->prepare($sql);
+     $result = $stmt->execute([$title, $content, $categoryID, $imageFile, $userID]);
+     return $conn->lastInsertId();
+}
+
+
+public function createWikiTAgs( $tagIDs, $wikiid){
+    $conn = $this->db->getConnection();
+        $sql = "INSERT INTO `wiki_tags` (`wikiID`, `tagID`)
+                   VALUES (?, ?)";
+     $stmt = $conn->prepare($sql);
+     $result = $stmt->execute([$wikiid,$tagIDs]);
+     return $result ;
+}
+
+
     
 }
 

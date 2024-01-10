@@ -62,11 +62,42 @@ class WikiController {
         $searchResults = $wiki->searchByName($searchTerm);
     if($searchResults){
         include_once '../app/View/user/includesAjax/wiki.php';
-        exit(); 
     }
         
   }
 }
+
+public function create(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit']=='addwiki') {
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $categoryID = $_POST['categoryID'];
+        $tagIDs = isset($_POST['tagIDs']) ? $_POST['tagIDs'] : [];
+        
+        $userID = $_SESSION['user_id'];
+        
+        if ($_FILES['urlImage']['error'] == UPLOAD_ERR_OK) {
+            
+            $uploadDir = './upload/';
+            $uploadedFile = $uploadDir . basename($_FILES['urlImage']['name']);
+        
+            if (move_uploaded_file($_FILES['urlImage']['tmp_name'], $uploadedFile)) {
+                $imageFile = $uploadedFile;
+            } else {
+                echo 'File upload failed.';
+            } }
+        
+        $wikiModel = new WikiModel();
+        
+        $wikiid = $wikiModel->createWiki($title, $content, $categoryID, $imageFile, $userID);
+        foreach ($tagIDs as $tagID) {
+            $wikiModel->createWikiTAgs($tagID, $wikiid);
+        }
+
+       header('location:?uri=wiki/getWikis');
+    }
+}
+
    
 }
 
