@@ -78,18 +78,17 @@ public function delete($id) {
 }
     
 
-public function findFour(){
-    $conn = $this->db->getConnection();
-    $sql = "SELECT * FROM `categories` order by categoryID DESC  limit 4 ";
+static public function findFour(){
+    $db = new Database();
+    $conn = $db->getConnection();
+    $sql = "SELECT * FROM `categories` ORDER BY categoryID DESC LIMIT 4";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
     if($result){
         return $result;
     }
-
-   }
-
+}
 
 }
 

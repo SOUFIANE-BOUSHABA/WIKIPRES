@@ -8,7 +8,7 @@
         <button class="btn btn-dark col-md-1" data-bs-toggle="modal" data-bs-target="#addModal">+</button>
         <div>
        
-        <input type="text" id="searchInput" onkeyup="search()" placeholder="rechercher">
+        <input type="text" id="searchInput" onkeyup="searchadmincategory()" placeholder="rechercher">
         </div>
      
     </div>
@@ -73,7 +73,7 @@
                         <form action="?uri=category/delete" method="post" >
                         <input type="hidden" name="id" value="<?= $categorei->categoryID?>">
                         <p>vous voulez vraiment <span class="text-danger">suprimmer</span>  cette categore : <?= $categorei->name ?></p>
-                        <button type="submit" name="submit" value="deletcategory" onclick="confirmDelete()" class="btn btn-danger">
+                        <button type="submit" name="submit" value="deletcategory"  class="btn btn-danger">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/> </svg>
                         </button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -126,72 +126,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script>
-  function toggleAside() {
-    var aside = document.getElementById("myAside");
-    var righttt = document.getElementById("right");
-    var rightttBtn = document.getElementById("rightBtn");
-    var leftBtn = document.getElementById("leftBtn");
-    var links = document.querySelectorAll(".link");
+<script src="./assets/js/admin.js"></script>
 
-    if (aside.style.width === "5%") {
-      aside.style.width = "17%";
-      righttt.style.width="83%";
-      leftBtn.style.display="block";
-      rightttBtn.style.display="none";
-      links.forEach(function (link) {
-            link.style.display = "block";
-        });
-    
-    } else {
-      aside.style.width = "5%";
-      righttt.style.width="95%";
-      leftBtn.style.display="none";
-      rightttBtn.style.display="block";
-   
-        links.forEach(function (link) {
-            link.style.display = "none";
-        });
-    }
-  }
-  
-  function confirmDelete() {
-           
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "success",
-                        title: "Votre élément a été supprimé avec succès"
-                    });
-              
-        }
-
-
-
-        function search() {
-               
-               let input = document.getElementById("searchInput").value;
-               let url = `?uri=category/search&search=${encodeURIComponent(input)}`;
-
-               let xml = new XMLHttpRequest();
-               xml.onreadystatechange = function () {
-                   if (this.readyState == 4 && this.status == 200) {
-                       document.getElementById("category").innerHTML = xml.responseText;
-                   }
-               };
-               xml.open("GET", url, true);
-               xml.send();
-         
-       }
-</script>
 </body>
 </html>

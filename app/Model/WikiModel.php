@@ -40,6 +40,18 @@ class WikiModel{
     
        }
 
+       public function findAllOfUser(){
+        $conn = $this->db->getConnection();
+        $id=$_SESSION['user_id'];
+        $sql = "SELECT * FROM `wikis` WHERE `deletedAt` IS NULL and userID = ? ";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        if($result){
+            return $result;
+        }
+       }
+
    public function searchByName($searchTerm) {
     $conn = $this->db->getConnection();
     $sql = "SELECT * FROM `wikis` WHERE `title` LIKE ?  and `deletedAt` IS NULL";
@@ -80,10 +92,24 @@ public function createWikiTAgs( $tagIDs, $wikiid){
 
 
 
+public function deleteWiki($id) {
+    $conn = $this->db->getConnection();
+    $sql = "DELETE FROM `wikis` WHERE `wikiID` = ?";
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute([$id]);
+
+    return $result;
+}
 
 
 
-
+public function updateWiki($id, $title, $content, $categoryID, $imageFile) {
+    $conn = $this->db->getConnection();
+    $sql = "UPDATE `wikis` SET `title` = ?, `content` = ?, `categoryID` = ?, `urlImage` = ?, `updated_at` = CURRENT_TIMESTAMP WHERE `wikiID` = ?";
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute([$title, $content, $categoryID, $imageFile, $id]);
+    return $result;
+}
 
 
 
@@ -105,7 +131,17 @@ public function  findOne($id){
 
 
 
-
+static public function findFour(){
+    $db = new Database();
+    $conn = $db->getConnection();
+    $sql = "SELECT * FROM `wikis` where `deletedAt` IS NULL ORDER BY wikiID DESC LIMIT 4 ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    if($result){
+        return $result;
+    }
+}
 
 
 
