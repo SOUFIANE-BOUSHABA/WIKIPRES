@@ -12,7 +12,7 @@ class WikiController {
         $wiki = new WikiModel();
         $wikis = $wiki->findAll();
    
-      
+        $wikisforuser = $wiki->findAllOfUser();
         $category = new CategoryController();
         $categoreis = $category->getCategoriesFourFormulaire(); 
         
@@ -74,36 +74,59 @@ class WikiController {
   }
 }
 
-public function create(){
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit']=='addwiki') {
+public function create() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $title = $_POST['title'];
         $content = $_POST['content'];
         $categoryID = $_POST['categoryID'];
         $tagIDs = isset($_POST['tagIDs']) ? $_POST['tagIDs'] : [];
-        
+
         $userID = $_SESSION['user_id'];
-        
+
+        $imageFile = null;
         if ($_FILES['urlImage']['error'] == UPLOAD_ERR_OK) {
-            
             $uploadDir = './upload/';
             $uploadedFile = $uploadDir . basename($_FILES['urlImage']['name']);
-        
+
             if (move_uploaded_file($_FILES['urlImage']['tmp_name'], $uploadedFile)) {
                 $imageFile = $uploadedFile;
             } else {
                 echo 'File upload failed.';
-            } }
-        
-        $wikiModel = new WikiModel();
-        
-        $wikiid = $wikiModel->createWiki($title, $content, $categoryID, $imageFile, $userID);
-        foreach ($tagIDs as $tagID) {
-            $wikiModel->createWikiTAgs($tagID, $wikiid);
+            }
         }
 
-       header('location:?uri=wiki/getWikis');
+        $wikiModel = new WikiModel();
+
+        if (isset($_POST['id'])) {
+            $wikiID = $_POST['id'];
+            $result = $wikiModel->updateWiki($wikiID, $title, $content, $categoryID, $imageFile);
+        } else {
+            $wikiID = $wikiModel->createWiki($title, $content, $categoryID, $imageFile, $userID);
+            foreach ($tagIDs as $tagID) {
+                $wikiModel->createWikiTAgs($tagID, $wikiID);
+            }
+        }
+
+        header('location:?uri=wiki/getWikis');
     }
 }
+
+
+public function deleteWiki() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit'] == 'deletewiki') {
+        $id = $_POST['id'];
+
+        $wiki = new WikiModel();
+        $result = $wiki->deleteWiki($id);
+
+        if ($result) {
+            header("Location: ?uri=wiki/getWikis");
+            exit();
+        }
+    }
+}
+
+
 
 
 

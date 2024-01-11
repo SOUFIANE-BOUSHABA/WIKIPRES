@@ -22,10 +22,9 @@
         <div class="row justify-content-between">
         <?php foreach ($categoreis as $categorei) :  ?>
 
-            <!-- Category Card 1 -->
+           
             <div class="col-md-2 category-card shadow-sm">
                 <div class="card ">
-                   
                     <div class="card-body">
                         <h5 class="card-title"><?= $categorei->name ?></h5>
                     </div>
@@ -42,55 +41,19 @@
     <div class="container">
         <h2 class="fw-bold">Latest Wikis</h2>
         <div class="row">
-
-            <!-- Wiki Card 1 -->
+        <?php foreach ($wikis as $wiki) :  ?>
             <div class="col-md-3 wiki-card shadow-sm">
                 <div class="card">
-                    <img src="les-gens-minuscules-lisant-des-livres-de-la-liste-de-la-litterature-de-qualite-2r5fgnb-removebg-preview.png" class="card-img-top" alt="Wiki 1">
+                    <img src="<?= $wiki->urlImage ?>" class="card-img-top" alt="Wiki 1">
                     <div class="card-body">
-                        <h5 class="card-title">Wiki 1</h5>
-                        <p class="card-text">Description of Wiki 1.</p>
-                        <a href="#" class="btn btn-dark">Read More</a>
+                        <h5 class="card-title"><?= $wiki->title ?></h5>
+                        <p class="card-text"></p>
+                        <a href="?uri=wiki/detailwiki/<?=$wiki->wikiID?>" class="btn btn-dark">Read More</a>
                     </div>
                 </div>
             </div>
-
-             <!-- Wiki Card 1 -->
-             <div class="col-md-3 wiki-card shadow-sm">
-                <div class="card">
-                    <img src="les-gens-minuscules-lisant-des-livres-de-la-liste-de-la-litterature-de-qualite-2r5fgnb-removebg-preview.png" class="card-img-top" alt="Wiki 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Wiki 1</h5>
-                        <p class="card-text">Description of Wiki 1.</p>
-                        <a href="#" class="btn btn-dark">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Wiki Card 1 -->
-            <div class="col-md-3 wiki-card shadow-sm">
-                <div class="card">
-                    <img src="les-gens-minuscules-lisant-des-livres-de-la-liste-de-la-litterature-de-qualite-2r5fgnb-removebg-preview.png" class="card-img-top" alt="Wiki 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Wiki 1</h5>
-                        <p class="card-text">Description of Wiki 1.</p>
-                        <a href="#" class="btn btn-dark">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-             <!-- Wiki Card 1 -->
-             <div class="col-md-3 wiki-card shadow-sm">
-                <div class="card">
-                    <img src="les-gens-minuscules-lisant-des-livres-de-la-liste-de-la-litterature-de-qualite-2r5fgnb-removebg-preview.png" class="card-img-top" alt="Wiki 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Wiki 1</h5>
-                        <p class="card-text">Description of Wiki 1.</p>
-                        <a href="#" class="btn btn-dark">Read More</a>
-                    </div>
-                </div>
-            </div>
-
+            <?php endforeach; ?>
+           
         </div>
     </div>
 </section>
