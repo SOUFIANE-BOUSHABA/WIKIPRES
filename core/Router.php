@@ -26,7 +26,8 @@ class Router
             if (class_exists($controller)) {
                 $this->controller = $controller;
             } else {
-              echo 'this controller not exist';
+                $controller = 'App\Controller\ErrorController';
+                $this->controller = $controller;
             }
         }
 
@@ -36,7 +37,8 @@ class Router
             if (method_exists($this->controller, $method)) {
                 $this->method = $method;
             } else {
-              echo 'this method not exist';
+                $controller = 'App\Controller\ErrorController';
+                $this->controller = $controller;
             }
         }
 

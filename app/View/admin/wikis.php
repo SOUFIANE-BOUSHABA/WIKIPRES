@@ -8,7 +8,7 @@
        <?php if ($_SESSION['role'] === 'author') { ?> <button class="btn btn-dark col-md-1" data-bs-toggle="modal" data-bs-target="#addModal">+</button><?php } ?>
         <div>
        
-        <input type="text" id="searchInput" onkeyup="searchadminwiki()" placeholder="rechercher">
+      
         </div>
      
     </div>
@@ -56,7 +56,7 @@
             <?php if(!empty($wikisforuser)){
                 foreach ($wikisforuser as $wiki) :  ?>
                     <tr>
-                        <td><img src="<?= $wiki->urlImage  ?>" alt="ok"></td>
+                        <td><img src="<?= $wiki->urlImage  ?>" style="width: 80px;" alt="ok"></td>
                         <td><?= $wiki->title ?></td>
                         <td><?= $wiki->created_at ?></td>
                         <td><?= $wiki->updated_at ?></td>

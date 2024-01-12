@@ -22,18 +22,6 @@ class WikiController {
         include_once '../app/View/admin/wikis.php';
    }
 
-    public function search() {
-        if (isset($_GET['search'])) {
-            $searchTerm = $_GET['search'];
-            $wiki = new WikiModel();
-            $searchResults = $wiki->searchByName($searchTerm);
-        if($searchResults){
-            include_once '../app/View/admin/includesAjax/wikis.php';
-            exit(); 
-        }
-            
-      }
-    }
 
     public function archiver() {
         if ($_POST['submit'] == 'archiverwiki') {
