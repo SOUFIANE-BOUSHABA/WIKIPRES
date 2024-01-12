@@ -1,5 +1,5 @@
 <?php foreach ($searchResults as $wiki) :  ?>
-            <!-- Wiki Card 1 -->
+    
             <div class="col-md-5 wiki-card shadow-sm "  data-aos="fade-up"
                 data-aos-anchor-placement="bottom-bottom">
                 <div class="card">
@@ -12,4 +12,4 @@
                 </div>
             </div>
 
-            <?php endforeach; ?>
+ <?php endforeach; ?>

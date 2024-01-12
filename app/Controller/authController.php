@@ -15,10 +15,17 @@ class AuthController {
 
       public function registration() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit']=='regester') {
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+          $firstname = htmlspecialchars($_POST['firstname']);
+          $lastname = htmlspecialchars($_POST['lastname']);
+          $email = htmlspecialchars($_POST['email']);
+          $password = htmlspecialchars($_POST['password']);
+            $errors = [];
+
+            if (empty($firstname) || empty($lastname) || empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($password)) {
+              $errors['general'] = "Veuillez remplir tous les champs correctement.";
+          }
+          
+          if(empty($errors)){
             $newUser = new AuthModel();
             $newUser->setFirstname($firstname);
             $newUser->setLastname($lastname);
@@ -29,15 +36,24 @@ class AuthController {
             include "../app/View/auth/login.php";
            } 
            
-        } 
+        } else{
+          echo $errors['general'];
+          }
+          
+      }
     }
 
     public function loginUser() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit']=='login') {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+          $email = htmlspecialchars($_POST['email']);
+          $password = htmlspecialchars($_POST['password']);
+
+            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($password)) {
+              $errors['general'] = "Veuillez remplir tous les champs correctement.";
+          }
+
+          if(empty($errors)){
             $loginUser = new AuthModel();
-         
             $user=$loginUser->loginUser($email , $password);
             if($user){
               
@@ -58,6 +74,8 @@ class AuthController {
            } else {
             include_once '../app/View/auth/login.php';
            }
+          }
+           
         } 
     }
     public function logoutUser() {
