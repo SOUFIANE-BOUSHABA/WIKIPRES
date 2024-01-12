@@ -3,7 +3,7 @@
 <body>
     <div class="container d-flex justify-content-center w-full mt-8" style="height: 600px;">
         <div class="d-flex mt-8 w-full col-md-4 align-items-center" style="width:500px">
-            <form class="p-4 shadow" id="registrationForm" action="?uri=auth/registration" method="post" style="width:500px" novalidate>
+            <form class="p-4 shadow" id="formular" action="?uri=auth/registration" method="post" style="width:500px" novalidate>
                 <div class="mb-3">
                     <label for="firstname" class="form-label">Nom </label>
                     <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Nom " required>
@@ -39,3 +39,4 @@
         </div>
     </div>
 </body>
+<script src="./assets/js/auth.js"> </script>

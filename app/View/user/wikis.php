@@ -6,7 +6,7 @@
     <div class="row mt-4">
         <div class="col-md-3 border" id="sticky">
             <div>
-                <input type="text"  id="searchInput" onkeyup="search()" placeholder="Search">
+                <input type="text"  id="searchInput" oninput="search()" placeholder="Search">
             </div>
 
             <!-- Checklist -->
@@ -14,7 +14,7 @@
                 <h5>category</h5>
                 <?php foreach($categoreis as $category) : ?>
                     <div class="form-check">
-                        <input class="form-check-input category-radio" type="radio" name="category" value="<?=$category->categoryID?>" id="category<?=$category->categoryID?>">
+                        <input class="form-check-input category-radio" onclick="searchByCategory(<?=$category->categoryID?>)" type="radio" name="category" value="<?=$category->categoryID?>" id="category<?=$category->categoryID?>">
                         <label class="form-check-label" for="category<?=$category->categoryID?>">
                             <?=$category->name?>
                         </label>
@@ -80,11 +80,8 @@
        }
 
 
-       function searchByCategory() {
-            let categoryRadio = document.querySelector('input[name="category"]:checked');
-            if (categoryRadio) {
-                let category = categoryRadio.value;
-                let url = `?uri=wiki/searchByCategory&category=${category}`;
+       function searchByCategory(id) {
+                let url = `?uri=wiki/searchByCategory&category=${id}`;
 
                 let xml = new XMLHttpRequest();
                 xml.onreadystatechange = function () {
@@ -95,7 +92,7 @@
                 xml.open("GET", url, true);
                 xml.send();
             }
-        }
+        
 </script>
 
 

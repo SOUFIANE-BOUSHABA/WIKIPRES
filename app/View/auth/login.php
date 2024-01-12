@@ -5,17 +5,17 @@
         <div class="d-flex w-full col-md-4 align-items-center">
             <form class="shadow p-3" id="formular" action="?uri=auth/loginUser" method="post" novalidate>
 
-                <div class="mb-3">
+            <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please enter your email address.</div>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                    <div class="valid-feedback">Valide.</div>
+                    <div class="invalid-feedback">Veuillez entrer une adresse email valide.</div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Mot de passe</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please enter your password.</div>
+                    <div class="valid-feedback">Valide.</div>
+                    <div class="invalid-feedback">Veuillez entrer un mot de passe.</div>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-primary" name="submit" value="login" type="submit">Se connecter</button>
@@ -28,3 +28,4 @@
     </div>
 
 </body>
+<script src="./assets/js/auth.js"> </script>
