@@ -74,12 +74,12 @@
 
 
 <script>
-  AOS.init();
+ 
 
   function search() {
                
                let input = document.getElementById("searchInput").value;
-               let url = `?uri=wiki/searchtwo&search=${encodeURIComponent(input)}`;
+               let url = `?uri=wiki/searchtwo&search=${input}`;
 
                let xml = new XMLHttpRequest();
                xml.onreadystatechange = function () {
