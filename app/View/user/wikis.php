@@ -1,10 +1,23 @@
 <?php include("../app/View/user/header.php");?>
 
+<style>
+  @media screen and (max-width: 765px) {
+        #sticky{
+            display: flex;
+            width:100%; 
+            gap: 20px;
+            z-index: 100;
+            background-color: white;
+            height: 200px;
+            margin-top: -110px;
+        }
+    }
+</style>
 
 
-<div class="container border">
+<div class="container ">
     <div class="row mt-4">
-        <div class="col-md-3 border" id="sticky">
+        <div class="col-md-3 " id="sticky">
             <div>
                 <input type="text"  id="searchInput" oninput="search()" placeholder="Search">
             </div>
@@ -26,16 +39,16 @@
                 <h5>tags</h5>
                 <?php  foreach($tags as $tag) : ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="check1">
-                    <label class="form-check-label" for="check1">
-                       <?=$tag->name?>
-                    </label>
+                <input class="form-check-input category-radio" onclick="searchByTag(<?=$tag->tagID?>)" type="radio" name="tag" value="<?=$tag->tagID?>" id="tag<?=$tag->tagID?>">
+                        <label class="form-check-label" for="tag<?=$tag->tagID?>">
+                            <?=$tag->name?>
+                        </label>
                 </div>
                 <?php endforeach ?>
                
             </div>
         </div>
-        <div class="col-md-9 border">
+        <div class="col-md-9 ">
        
         <div class="row text-start justify-content-evenly" id="wikisforuser">
         <?php foreach ($wikis as $wiki) :  ?>
@@ -92,7 +105,20 @@
                 xml.open("GET", url, true);
                 xml.send();
             }
-        
+
+            function searchByTag(id) {
+                let url = `?uri=wiki/searchByTag&tag=${id}`;
+
+                let xml = new XMLHttpRequest();
+                xml.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("wikisforuser").innerHTML = xml.responseText;
+                    }
+                };
+                xml.open("GET", url, true);
+                xml.send();
+            }
+
 </script>
 
 

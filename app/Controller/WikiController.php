@@ -155,6 +155,20 @@ public function searchByCategory() {
         }
     }
 }
+
+
+public function searchByTag(){
+    if (isset($_GET['tag'])) {
+        $tagId = $_GET['tag'];
+
+        $wiki = new WikiModel();
+        $searchResults = $wiki->searchByTag($tagId);
+
+        if ($searchResults) {
+            include_once '../app/View/user/includesAjax/wiki.php';
+        }
+    }
+}
    
 }
 
