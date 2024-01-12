@@ -17,7 +17,7 @@
 
 <section class="category-section">
     <div class="container">
-    <h2 class="fw-bold">Latest Category</h2>
+    <h2 class="fw-bold" style="margin-top:100px;">Latest Category</h2>
         
         <div class="row justify-content-between">
         <?php foreach ($categoreis as $categorei) :  ?>

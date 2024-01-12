@@ -148,22 +148,27 @@ static public function findFour(){
 
 
 public function searchByCategory($categoryId) {
-    $conn = $this->db->getConnection();
-
-    $sql = "SELECT w.* FROM `wikis` w
-            JOIN `categories` wc ON w.`categoryID` = wc.`categoryID`
-            WHERE  wc.`categoryID` = ? AND w.`deletedAt` IS NULL";
-
+    $conn = $this->db->getConnection(); 
+    $sql = "SELECT w.* FROM `wikis` w  JOIN `categories` wc ON w.`categoryID` = wc.`categoryID`  WHERE  wc.`categoryID` = ? AND w.`deletedAt` IS NULL"; 
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$categoryId]);
-
-    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
+    $stmt->execute([$categoryId]); 
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ); 
     if ($result) {
         return $result;
     }
 }
 
+
+public function searchByTag($tagId) {
+    $conn = $this->db->getConnection();
+    $sql = "SELECT * FROM `wikis` join wiki_tags on wiki_tags.wikiID =wikis.wikiID  join tags on tags.tagID = wiki_tags.tagID  where tags.tagID = ? AND wikis.`deletedAt` IS NULL";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$tagId]);
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    if ($result) {
+        return $result;
+    }
+}
 
 
 
