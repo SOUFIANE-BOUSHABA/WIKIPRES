@@ -21,7 +21,7 @@
   <div class="row mt-3">
     <div class="col-12">
       <hr>
-      <p class="text-end">Posted by : <span class="text-primary"><?=$wikis->first_name." ".$wikis->first_name?></span> </p>
+      <p class="text-end">Posted by : <span class="text-primary"><?=$wikis->first_name." ".$wikis->laste_name?></span> </p>
     </div>
   </div>
 </div>
