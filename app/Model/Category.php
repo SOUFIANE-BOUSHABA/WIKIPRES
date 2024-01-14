@@ -7,7 +7,7 @@ use PDOException;
 
 use App\Database\Database;
 
-class TagModel{
+class Category{
     private $db;
     private $name;
 
@@ -23,7 +23,7 @@ class TagModel{
    
    public function create(){
     $conn = $this->db->getConnection();
-    $sql = "INSERT INTO `tags`(`name`) VALUES (?)";
+    $sql = "INSERT INTO `categories`(`name`) VALUES (?)";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$this->getName()]);
     if($stmt){
@@ -34,7 +34,7 @@ class TagModel{
 
    public function findAll(){
     $conn = $this->db->getConnection();
-    $sql = "SELECT * FROM `tags` ";
+    $sql = "SELECT * FROM `categories` ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -48,7 +48,7 @@ class TagModel{
    public function update($id){
        
     $conn = $this->db->getConnection();
-    $sql = "UPDATE `tags`   SET `name` = ?  WHERE `tagID` = ? ";
+    $sql = "UPDATE `categories`   SET `name` = ?  WHERE `categoryID` = ? ";
     $stmt = $conn->prepare($sql);
     $result=  $stmt->execute([$this->getName(), $id]);
     if($result){
@@ -60,7 +60,7 @@ class TagModel{
 
    public function searchByName($searchTerm) {
     $conn = $this->db->getConnection();
-    $sql = "SELECT * FROM `tags` WHERE `name` LIKE ?";
+    $sql = "SELECT * FROM `categories` WHERE `name` LIKE ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute(["%$searchTerm%"]);
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -71,12 +71,25 @@ class TagModel{
 
 public function delete($id) {
     $conn = $this->db->getConnection();
-    $sql = "DELETE FROM `tags` WHERE `tagID` = ?";
+    $sql = "DELETE FROM `categories` WHERE `categoryID` = ?";
     $stmt = $conn->prepare($sql);
     $result = $stmt->execute([$id]);
     return $result;
 }
     
+
+static public function findFour(){
+    $db = new Database();
+    $conn = $db->getConnection();
+    $sql = "SELECT * FROM `categories` ORDER BY categoryID DESC LIMIT 4";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    if($result){
+        return $result;
+    }
+}
+
 }
 
 

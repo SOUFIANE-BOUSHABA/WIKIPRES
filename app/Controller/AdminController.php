@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Controller;
-use App\Model\AuthModel;
+use App\Model\User;
 
 class AdminController {
 
     public function index(){
-        $adminModel = new AuthModel();
+        $adminModel = new User();
 
         $userCount = $adminModel->getUserCount();
         $categoryCount = $adminModel->getCategoryCount();

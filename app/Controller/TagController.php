@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Controller;
-use App\Model\TagModel;
+use App\Model\Tag;
 
 class TagController {
 
     public function Create(){
          if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit']=='addtag') {
             $name = $_POST['tag'];
-            $tag = new TagModel();
+            $tag = new Tag();
             $tag->setName($name);
            if($tag->create()){ 
             $this->getTags();
@@ -18,7 +18,7 @@ class TagController {
     }
 
     public function getTags(){
-         $tag = new TagModel();
+         $tag = new Tag();
          $tags=$tag->findAll();
          include_once '../app/View/admin/tags.php';
     }
@@ -26,7 +26,7 @@ class TagController {
     public function search() {
         if (isset($_GET['search'])) {
             $searchTerm = $_GET['search'];
-            $tag = new TagModel();
+            $tag = new Tag();
             $searchResults = $tag->searchByName($searchTerm);
         if($searchResults){
             include_once '../app/View/admin/includesAjax/tags.php';
@@ -40,7 +40,7 @@ class TagController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit']=='modifierTag') {
             $name = $_POST['tag'];
             $id= $_POST['id'];
-            $tag = new TagModel();
+            $tag = new Tag();
             $tag->setName($name);
            if($tag->update($id)){ 
             $this->getTags();
@@ -53,7 +53,7 @@ class TagController {
       public function delete() {
         if ($_POST['submit'] == 'delettag') {
             $id= $_POST['id'];
-                $tag = new TagModel();
+                $tag = new Tag();
                 $result = $tag->delete($id);
     
                if ($result) { 
@@ -64,12 +64,12 @@ class TagController {
     }
 
     public function getTagsForFormulaire(){
-        $tag = new TagModel();
+        $tag = new Tag();
        return $tags=$tag->findAll();
    }
 
    public function getTagsForFilter(){
-    $tag = new TagModel();
+    $tag = new Tag();
    return $tags=$tag->findAll();
 }
   
