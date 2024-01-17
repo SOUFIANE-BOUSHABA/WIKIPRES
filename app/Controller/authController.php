@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-use App\Model\AuthModel;
+use App\Model\User;
 
 class AuthController {
 
@@ -26,7 +26,7 @@ class AuthController {
           }
           
           if(empty($errors)){
-            $newUser = new AuthModel();
+            $newUser = new User();
             $newUser->setFirstname($firstname);
             $newUser->setLastname($lastname);
             $newUser->setEmail($email);
@@ -53,7 +53,7 @@ class AuthController {
           }
 
           if(empty($errors)){
-            $loginUser = new AuthModel();
+            $loginUser = new User();
             $user=$loginUser->loginUser($email , $password);
             if($user){
               

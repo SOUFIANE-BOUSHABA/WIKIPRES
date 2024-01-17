@@ -7,7 +7,7 @@ use PDOException;
 
 use App\Database\Database;
 
-class AuthModel {
+class User {
     private $db;
 
     private $firstname;
@@ -74,6 +74,22 @@ class AuthModel {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     public function getUserCount()
     {  $conn = $this->db->getConnection();
 
