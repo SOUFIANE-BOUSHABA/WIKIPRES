@@ -7,7 +7,7 @@ use PDOException;
 
 use App\Database\Database;
 
-class WikiModel{
+class Wiki{
     private $db;
     private $name;
     private $urlImg;

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-use App\Model\WikiModel;
+use App\Model\Wiki;
 
 class WikiController {
 
@@ -9,7 +9,7 @@ class WikiController {
 
      
 
-        $wiki = new WikiModel();
+        $wiki = new Wiki();
         $wikis = $wiki->findAll();
    
         $wikisforuser = $wiki->findAllOfUser();
@@ -26,7 +26,7 @@ class WikiController {
     public function archiver() {
         if ($_POST['submit'] == 'archiverwiki') {
             $id = $_POST['id'];
-            $wiki = new WikiModel();
+            $wiki = new Wiki();
             $result = $wiki->archiver($id);
     
             if ($result) {
@@ -36,7 +36,7 @@ class WikiController {
         }
     }
     public function getWikisForUser(){
-        $wiki = new WikiModel();
+        $wiki = new Wiki();
         $wikis=$wiki->findAll();
 
         $category = new CategoryController();
@@ -53,7 +53,7 @@ class WikiController {
    public function searchtwo() {
     if (isset($_GET['search'])) {
         $searchTerm = $_GET['search'];
-        $wiki = new WikiModel();
+        $wiki = new Wiki();
         $searchResults = $wiki->searchByName($searchTerm);
     if($searchResults){
         include_once '../app/View/user/includesAjax/wiki.php';
@@ -83,7 +83,7 @@ public function create() {
             }
         }
 
-        $wikiModel = new WikiModel();
+        $wikiModel = new Wiki();
 
         if (isset($_POST['id'])) {
             $wikiID = $_POST['id'];
@@ -104,7 +104,7 @@ public function deleteWiki() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['submit'] == 'deletewiki') {
         $id = $_POST['id'];
 
-        $wiki = new WikiModel();
+        $wiki = new Wiki();
         $result = $wiki->deleteWiki($id);
 
         if ($result) {
@@ -119,7 +119,7 @@ public function deleteWiki() {
 
 
 public function detailwiki($id){
-    $wikiModel = new WikiModel();
+    $wikiModel = new Wiki();
     $wikis= $wikiModel->findOne($id);
     include_once '../app/View/user/detailwiki.php';
 }
@@ -135,7 +135,7 @@ public function searchByCategory() {
     if (isset($_GET['category'])) {
         $categoryId = $_GET['category'];
 
-        $wiki = new WikiModel();
+        $wiki = new Wiki();
         $searchResults = $wiki->searchByCategory($categoryId);
 
         if ($searchResults) {
@@ -149,7 +149,7 @@ public function searchByTag(){
     if (isset($_GET['tag'])) {
         $tagId = $_GET['tag'];
 
-        $wiki = new WikiModel();
+        $wiki = new Wiki();
         $searchResults = $wiki->searchByTag($tagId);
 
         if ($searchResults) {

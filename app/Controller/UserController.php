@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Controller;
-use App\Model\CategoryModel;
-use App\Model\WikiModel;
+use App\Model\Category;
+use App\Model\Wiki;
 
 class UserController {
 
     public function index(){
-      $categoreis = CategoryModel::findFour();
-      $wikis = WikiModel::findFour();
+      $categoreis = Category::findFour();
+      $wikis = Wiki::findFour();
       include "../app/View/user/home.php";
     }
 
